@@ -7,15 +7,24 @@ function handler(req, res) {
   if (parsedUrl.pathname === '/') {
     res.writeHead(200, { 'Content-type': 'text/plain' });
     res.write('Hello, this is the web server');
-    res.end();
+    return res.end();
   } else if (parsedUrl.pathname === '/time') {
     res.writeHead(200, { 'Content-type': 'text/plain' });
     res.write(new Date().toString());
-    res.end();
+    return res.end();
+  } else if (parsedUrl.pathname === '/hello') {
+    const name = parsedUrl.query.name;
+    if (!name) {
+      res.writeHead(400, { 'Content-type': 'text/plain' });
+      return res.end();
+    }
+    res.writeHead(200, { 'Content-type': 'text/plain' });
+    res.write(`Hello ${name}!`);
+    return res.end();
   } else {
     res.writeHead(404, { 'Content-type': 'text/plain' });
     res.write('404, page not found!');
-    res.end();
+    return res.end();
   }
 }
 
