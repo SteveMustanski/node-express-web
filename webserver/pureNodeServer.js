@@ -8,6 +8,10 @@ function handler(req, res) {
     res.writeHead(200, { 'Content-type': 'text/plain' });
     res.write('Hello, this is the web server');
     res.end();
+  } else if (parsedUrl.pathname === '/time') {
+    res.writeHead(200, { 'Content-type': 'text/plain' });
+    res.write(new Date().toString());
+    res.end();
   } else {
     res.writeHead(404, { 'Content-type': 'text/plain' });
     res.write('404, page not found!');
