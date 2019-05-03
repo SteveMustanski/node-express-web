@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require('path');
 const createError = require('http-errors');
+const configs = require('./config');
 
 const app = express();
+
+const config = configs[app.get('env')];
 const routes = require('./routes');
 
 // setup pug and point to where the templates are located
