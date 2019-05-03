@@ -7,7 +7,7 @@ module.exports = () => {
     return res.render('speakers');
   });
   router.get('/:name', (req, res, next) => {
-    return res.send(`Speaker detail for ${req.params.name}`);
+    return res.render('speakers/detail');
   });
 
   return router;
