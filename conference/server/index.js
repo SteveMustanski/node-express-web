@@ -17,6 +17,11 @@ if (app.get('env') === 'development') {
 // set up variables to be used by templates
 app.locals.title = config.sitename;
 
+app.use((req, res, next) => {
+  res.locals.rendertime = new Date();
+  return next();
+});
+
 app.set('views', path.join(__dirname, './views'));
 
 app.use(express.static('public'));
