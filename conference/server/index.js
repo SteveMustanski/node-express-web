@@ -37,7 +37,6 @@ app.get('/favicon.ico', (req, res, next) => {
 app.use(async (req, res, next) => {
   try {
     const names = await speakerService.getNames();
-    console.log(names);
     res.locals.speakerNames = names;
     return next();
   } catch (err) {
