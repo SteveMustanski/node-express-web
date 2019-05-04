@@ -14,6 +14,9 @@ app.set('view engine', 'pug');
 if (app.get('env') === 'development') {
   app.locals.pretty = true;
 }
+// set up variables to be used by templates
+app.locals.title = config.sitename;
+
 app.set('views', path.join(__dirname, './views'));
 
 app.use(express.static('public'));
