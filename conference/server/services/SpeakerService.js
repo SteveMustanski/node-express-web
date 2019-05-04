@@ -38,6 +38,17 @@ class SpeakerService {
     });
   }
 
+  async getAllArtwork() {
+    const data = await this.getData();
+    const artwork = data.reduce((acc, elm) => {
+      if (elm.artwork) {
+        acc = [...acc, ...elm.artwork];
+      }
+      return acc;
+    }, []);
+    return artwork;
+  }
+
   async getData() {
     const data = await readFile(this.datafile, 'utf8');
     if (!data) {
