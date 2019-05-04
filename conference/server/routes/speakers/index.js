@@ -4,10 +4,14 @@ const router = express.Router();
 
 module.exports = () => {
   router.get('/', (req, res, next) => {
-    return res.render('speakers');
+    return res.render('speakers', {
+      page: 'All Speakers',
+    });
   });
   router.get('/:name', (req, res, next) => {
-    return res.render('speakers/detail');
+    return res.render('speakers/detail', {
+      page: req.parmas.name,
+    });
   });
 
   return router;
