@@ -2,10 +2,14 @@ const express = require('express');
 const path = require('path');
 const createError = require('http-errors');
 const configs = require('./config');
+const SpeakerService = require('./services/SpeakerService');
 
 const app = express();
 
 const config = configs[app.get('env')];
+
+const speakerService = new SpeakerService(config.data.speakers);
+
 const routes = require('./routes');
 
 // setup pug and point to where the templates are located
@@ -28,6 +32,17 @@ app.use(express.static('public'));
 // tell browser/express to not worry about favicon
 app.get('/favicon.ico', (req, res, next) => {
   return res.sendStatus(204);
+});
+
+app.use(async (req, res, next) => {
+  try {
+    const names = await speakerService.getNames();
+    console.log(names);
+    res.locals.speakerNames = names;
+    return next();
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 app.use('/', routes());
 
