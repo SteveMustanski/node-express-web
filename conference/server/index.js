@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const createError = require('http-errors');
+const bodyParser = require('body-parser');
 const configs = require('./config');
 const SpeakerService = require('./services/SpeakerService');
 const FeedbackService = require('./services/FeedbackService');
@@ -13,6 +14,9 @@ const speakerService = new SpeakerService(config.data.speakers);
 const feedbackService = new FeedbackService(config.data.feedback);
 
 const routes = require('./routes');
+app.use(express.static('public'));
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // setup pug and point to where the templates are located
 // also show non-compressed html in dev for debugging
@@ -30,7 +34,6 @@ app.use((req, res, next) => {
 
 app.set('views', path.join(__dirname, './views'));
 
-app.use(express.static('public'));
 // tell browser/express to not worry about favicon
 app.get('/favicon.ico', (req, res, next) => {
   return res.sendStatus(204);

@@ -17,6 +17,7 @@ module.exports = param => {
     }
   });
   router.post('/', (req, res, next) => {
+    console.log(req.body);
     return res.send(`Form Sent`);
   });
 
