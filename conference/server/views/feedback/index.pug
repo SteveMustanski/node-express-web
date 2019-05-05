@@ -4,16 +4,19 @@ block content
     .row
       .col-sm-4
         h1.feedback-form-title Send us feedback
+        if error
+          .alert.alert-danger
+            | There was an error handling your request.  Plaese fill out all fields.
         form.feedback-form(actoin='/feedback', method='POST')
           .form-group
             label(for='feedback-form-name') Name
-            input#feedback-form-name.form-control(type='text', placeholder='Enter your name', name='fbName')
+            input#feedback-form-name.form-control(type='text', placeholder='Enter your name', name='fbName' value=fbName)
           .form-group
             label(for='feedback-form-title') Title
-            input#feedback-form-title.form-control(type='text', placeholder='Title of your feedback', name='fbTitle')
+            input#feedback-form-title.form-control(type='text', placeholder='Title of your feedback', name='fbTitle', value=fbTitle)
           .form-group
             label(for='feedback-form-message') Message
-            textarea#feedback-form-message.form-control(type='text', placeholder='Enter your message, then hit the submit', rows='6', name='fbMessage')
+            textarea#feedback-form-message.form-control(type='text', placeholder='Enter your message, then hit the submit', rows='6', name='fbMessage')=fbMessage
           button.btn.btn-default.pull-right(type='submit') Submit
       // primary
       aside.col-sm-8
