@@ -19,32 +19,16 @@ block content
       aside.col-sm-8
         .maincontent.feedback
           h2.article-title Recent Feedback
-          .feedback-messages
-            .feedback-item.item-list.media-list
-              .feedback-item.media
-                .feedback-info.media-body
-                  .feedback-head
-                    .feedback-title
-                      | Best Meetup Ever 
-                      small.feedback-name.label.label-info Awesome
-                  .feedback-message I really love this meetup. Please don't let it end.
-            .feedback-item.item-list.media-list
-              .feedback-item.media
-                .feedback-info.media-body
-                  .feedback-head
-                    .feedback-title
-                      | Meeting Time 
-                      small.feedback-name.label.label-info Jane
-                  .feedback-message
-                    | Would you consider moving the meeting time 30 minutes to about 6pm. It's tough to make it to the meetings
-                    | on time right after work.
-            .feedback-item.item-list.media-list
-              .feedback-item.media
-                .feedback-info.media-body
-                  .feedback-head
-                    .feedback-title
-                      | Great Speaker 
-                      small.feedback-name.label.label-info Roy
-                  .feedback-message
-                    | I really enjoyed the speaker this month. Would love to hear another presentation.
-
+          if !feedbacklist || !feedbacklist.length
+            | No current feedback.  Be the first to comment!
+          else
+            .feedback-messages
+            each item in feedbacklist
+                .feedback-item.item-list.media-list
+                  .feedback-item.media
+                    .feedback-info.media-body
+                      .feedback-head
+                        .feedback-title=item.title
+                          | &nbsp
+                          small.feedback-name.label.label-info=item.name
+                      .feedback-message=item.message
