@@ -25,7 +25,7 @@ header
               li.divider(role='separator')
               each speaker in speakerNames
                 li
-                  a(href='/speakers/${speaker.shortname}')=speaker.name
+                  a(href=`/speakers/${speaker.shortname}`)=speaker.name
           li
             a(href='/feedback') Feedback
         // nav
