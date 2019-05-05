@@ -3,12 +3,14 @@ const path = require('path');
 const createError = require('http-errors');
 const configs = require('./config');
 const SpeakerService = require('./services/SpeakerService');
+const FeedbackService = require('./services/FeedbackService');
 
 const app = express();
 
 const config = configs[app.get('env')];
 
 const speakerService = new SpeakerService(config.data.speakers);
+const feedbackService = new FeedbackService(config.data.feedback);
 
 const routes = require('./routes');
 
@@ -47,6 +49,7 @@ app.use(
   '/',
   routes({
     speakerService,
+    feedbackService,
   }),
 );
 
