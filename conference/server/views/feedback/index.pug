@@ -7,6 +7,9 @@ block content
         if error
           .alert.alert-danger
             | There was an error handling your request.  Plaese fill out all fields.
+        else if success
+          .alert.alert-success
+            | Thank you for your feedback!
         form.feedback-form(actoin='/feedback', method='POST')
           .form-group
             label(for='feedback-form-name') Name

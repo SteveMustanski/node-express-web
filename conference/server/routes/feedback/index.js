@@ -11,6 +11,7 @@ module.exports = param => {
       return res.render('feedback', {
         page: 'Feedback',
         feedbacklist,
+        success: req.query.success,
       });
     } catch (err) {
       next(err);
@@ -33,7 +34,7 @@ module.exports = param => {
           feedbacklist,
         });
       }
-      return res.send(`Form Sent`);
+      return res.redirect('/feedback?success=truee');
     } catch (err) {
       next(err);
     }
